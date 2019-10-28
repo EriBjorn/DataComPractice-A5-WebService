@@ -6,19 +6,19 @@ import org.json.JSONObject;
 /**
  * Example on how to parse JSON strings to objects or arrays, and vice versa
  */
-public class JSONParseExample {
+public class JSONParse {
 
     public static void main(String[] args) {
 
         // Note: to do the JSON parsing you need org.json library
         // This project imports it automatically: the dependency to the library 
         // Is described in the pom.xml file. 
-        objectExample();
-        arrayExample();
-        nestedJsonExample();
+        object();
+        array();
+        nestedJson();
     }
 
-    private static void objectExample() {
+    public static void object() {
         System.out.println("-------------------------------");
         System.out.println("Test JSON Object parsing");
         System.out.println("-------------------------------");
@@ -60,7 +60,7 @@ public class JSONParseExample {
         System.out.println("");
     }
 
-    private static void arrayExample() {
+    public static void array() {
         System.out.println("-------------------------------");
         System.out.println("Test JSON Array parsing");
         System.out.println("-------------------------------");
@@ -104,7 +104,7 @@ public class JSONParseExample {
         System.out.println("");
     }
 
-    private static void nestedJsonExample() {
+    public static void nestedJson() {
         System.out.println("--------------------------------------------------");
         System.out.println("Test JSON Array with objects inside");
         System.out.println("--------------------------------------------------");

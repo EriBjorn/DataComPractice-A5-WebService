@@ -6,12 +6,9 @@ import java.net.URL;
 /**
  * An example showing how to send HTTP GET and read the response from the server
  */
-public class GETExample {
+public class GET
+{
 
-    public static void main(String[] args) {
-        GETExample example = new GETExample("52.164.220.230", 80);
-        example.doExampleGet();
-    }
 
     private String BASE_URL; // Base URL (address) of the server
 
@@ -21,16 +18,17 @@ public class GETExample {
      * @param host Will send request to this host: IP address or domain
      * @param port Will use this port
      */
-    public GETExample(String host, int port) {
+    public GET(String host, int port)
+    {
         BASE_URL = "http://" + host + ":" + port + "/";
     }
 
     /**
      * Send an HTTP GET to a specific path on the web server
      */
-    public void doExampleGet() {
-        // TODO: change path to something correct
-        sendGet("dkrest/test/get2"); //prøve med andre linken fra oppgava. dkrest/test/get  sto der fra før
+    public void doGet()
+    {
+        sendGet("dkrest/test/get2");
     }
 
     /**
