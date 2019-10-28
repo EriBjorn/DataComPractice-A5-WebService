@@ -5,7 +5,8 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class POSTExample {
+public class
+POSTExample {
 
     public static void main(String[] args) {
         POSTExample postExample = new POSTExample("104.248.47.74", 80);
@@ -35,11 +36,11 @@ public class POSTExample {
         JSONObject json = new JSONObject();
         json.put("a", a);
         json.put("b", b);
-        json.put("b", b);
+        json.put("c", c);
         System.out.println("Posting this JSON data to server");
         System.out.println(json.toString());
         // TODO: change path to something correct
-        sendPost("dkrest/auth", json);
+        sendPost("dkrest/auth2", json);
     }
 
     /**
