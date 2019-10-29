@@ -12,8 +12,6 @@ public class App
         //jparse.object();
         //jparse.array();
         //jparse.nestedJson();
-        post.post3RandomNumbers();
-        post.sendPost("datakomm.work", "JSONParse.");
     }
 
 

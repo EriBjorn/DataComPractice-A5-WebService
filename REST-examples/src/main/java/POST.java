@@ -8,10 +8,6 @@ import java.net.URL;
 public class
 POST {
 
-    public static void main(String[] args) {
-        POST postExample = new POST("52.164.220.230", 80);
-        postExample.post3RandomNumbers();
-    }
 
     private String BASE_URL; // Base URL (address) of the server
 
@@ -24,27 +20,6 @@ POST {
     public POST(String host, int port)
     {
         BASE_URL = "http://" + host + ":" + port + "/";
-    }
-
-    /**
-     * Post three random numbers to a specific path on the web server
-     */
-    public void post3RandomNumbers() {
-
-
-
-        int a = (int) Math.round(Math.random() * 100);
-        int b = (int) Math.round(Math.random() * 100);
-        int c = (int) Math.round(Math.random() * 100);
-
-        JSONObject json = new JSONObject();
-        json.put("a", a);
-        json.put("b", b);
-
-        System.out.println("Posting this JSON data to server");
-        System.out.println(json.toString());
-        // TODO: change path to something correct
-        sendPost("dkrest/auth", json);
     }
 
     /**
