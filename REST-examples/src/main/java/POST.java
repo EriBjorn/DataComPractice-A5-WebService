@@ -28,7 +28,9 @@ POST {
      * @param path     Relative path in the API.
      * @param jsonData The data in JSON format that will be posted to the server
      */
-    public void sendPost(String path, JSONObject jsonData) {
+    public String sendPost(String path, JSONObject jsonData) {
+        String responseBody = null;
+
         try {
             String url = BASE_URL + path;
             URL urlObj = new URL(url);
@@ -49,7 +51,7 @@ POST {
 
                 // Response was OK, read the body (data)
                 InputStream stream = con.getInputStream();
-                String responseBody = convertStreamToString(stream);
+                responseBody = convertStreamToString(stream);
                 stream.close();
                 System.out.println("Response from the server:");
                 System.out.println(responseBody);
@@ -63,6 +65,8 @@ POST {
             System.out.println("Something went wrong: " + e.getMessage());
             e.printStackTrace();
         }
+
+        return responseBody;
     }
 
     /**
