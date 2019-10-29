@@ -6,10 +6,10 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 public class
-POSTExample {
+POST {
 
     public static void main(String[] args) {
-        POSTExample postExample = new POSTExample("104.248.47.74", 80);
+        POST postExample = new POST("52.164.220.230", 80);
         postExample.post3RandomNumbers();
     }
 
@@ -21,7 +21,8 @@ POSTExample {
      * @param host Will send request to this host: IP address or domain
      * @param port Will use this port
      */
-    public POSTExample(String host, int port) {
+    public POST(String host, int port)
+    {
         BASE_URL = "http://" + host + ":" + port + "/";
     }
 
@@ -29,6 +30,9 @@ POSTExample {
      * Post three random numbers to a specific path on the web server
      */
     public void post3RandomNumbers() {
+
+
+
         int a = (int) Math.round(Math.random() * 100);
         int b = (int) Math.round(Math.random() * 100);
         int c = (int) Math.round(Math.random() * 100);
@@ -36,11 +40,11 @@ POSTExample {
         JSONObject json = new JSONObject();
         json.put("a", a);
         json.put("b", b);
-        json.put("c", c);
+
         System.out.println("Posting this JSON data to server");
         System.out.println(json.toString());
         // TODO: change path to something correct
-        sendPost("dkrest/auth2", json);
+        sendPost("dkrest/auth", json);
     }
 
     /**
@@ -49,7 +53,7 @@ POSTExample {
      * @param path     Relative path in the API.
      * @param jsonData The data in JSON format that will be posted to the server
      */
-    private void sendPost(String path, JSONObject jsonData) {
+    public void sendPost(String path, JSONObject jsonData) {
         try {
             String url = BASE_URL + path;
             URL urlObj = new URL(url);
@@ -79,7 +83,7 @@ POSTExample {
                 System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
             }
         } catch (ProtocolException e) {
-            System.out.println("Protocol nto supported by the server");
+            System.out.println("Protocol not supported by the server");
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
             e.printStackTrace();

@@ -8,15 +8,7 @@ import org.json.JSONObject;
  */
 public class JSONParse {
 
-    public static void main(String[] args) {
 
-        // Note: to do the JSON parsing you need org.json library
-        // This project imports it automatically: the dependency to the library 
-        // Is described in the pom.xml file. 
-        object();
-        array();
-        nestedJson();
-    }
 
     public static void object() {
         System.out.println("-------------------------------");
@@ -120,7 +112,6 @@ public class JSONParse {
         String jsonString = "[ " + book1 + ", " + book2 + ", " + book3 + "]";
         System.out.println("Book registry in JSON format:");
         System.out.println(jsonString);
-
         try {
             JSONArray bookList = new JSONArray(jsonString);
             System.out.println(bookList.length() + " books in the registry");

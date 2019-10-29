@@ -68,7 +68,6 @@
       <list>
         <item itemvalue="Application.App" />
         <item itemvalue="Application.GET" />
-        <item itemvalue="Application.JSONParseExample" />
         <item itemvalue="Application.GETExample" />
       </list>
     </recent_temporary>
@@ -91,7 +90,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
