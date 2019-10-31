@@ -36,7 +36,8 @@ public class GET
      *
      * @param path     Relative path in the API.
      */
-    private void sendGet(String path) {
+    public void sendGet(String path) {
+
         try {
             String url = BASE_URL + path;
             URL urlObj = new URL(url);
