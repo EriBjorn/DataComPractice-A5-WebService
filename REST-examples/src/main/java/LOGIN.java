@@ -22,6 +22,7 @@ public class LOGIN
         getTask(1);
         taskOne();
         getTask(2);
+       // taskTwo();
 
     }
 
@@ -68,7 +69,7 @@ public class LOGIN
         System.out.println("Sending task1 to server" + task1.toString());
 
 
-        String respons = post.sendPost("dkrest/solve", task1);
+        post.sendPost("dkrest/solve", task1);
 
 
         //JSONObject responsFromServer = new JSONObject(respons);
@@ -78,6 +79,15 @@ public class LOGIN
 
 
     }
+
+//    static public void taskTwo()
+//    {
+//        String respons = post.sendPost("dkrest/auth", jsonLogin);
+//
+//        JSONObject responsFromServer = new JSONObject(respons);
+//        responsFromServer.getString("0");
+//        System.out.println(responsFromServer);
+//    }
 
 
 }
