@@ -1,32 +1,27 @@
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class LOGIN
 {
     static int sessionID;
+    static public JSONArray argument;
+
     static POST post = new POST("52.164.220.230", 80);
     static GET get = new GET("datakomm.work", 80);
 
     public static void main(String[] args)
     {
 
-        boolean login = loginCredentials("eribjorn@stud.ntnu.no", "94013294");
-        if (login)
-        {
-            System.out.println("Logged in successfully");
-        }
-        else
-        {
-            System.out.println("login failed");
-        }
+       loginCredentials("eribjorn@stud.ntnu.no", "94013294");
 
         getTask(1);
         taskOne();
         getTask(2);
-       // taskTwo();
+        taskTwo();
 
     }
 
-    static public boolean loginCredentials(String yourEmail, String yourNumber)
+    static public void loginCredentials(String yourEmail, String yourNumber)
     {
         String email = yourEmail;
         String phone = yourNumber;
@@ -38,29 +33,31 @@ public class LOGIN
         System.out.println("Sending credentials to server");
         System.out.println(jsonLogin.toString());
 
-        String respons = post.sendPost("dkrest/auth", jsonLogin);
+        String response = post.sendPost("dkrest/auth", jsonLogin);
 
-        JSONObject responsFromServer = new JSONObject(respons);
-        sessionID = responsFromServer.getInt("sessionId");
+        JSONObject responseFromServer = new JSONObject(response);
+        sessionID = responseFromServer.getInt("sessionId");
 
 
-        boolean success = responsFromServer.getBoolean("success");
-        return success;
 
     }
 
     static public void getTask(int taskNumber)
     {
-        get.sendGet("dkrest/gettask/" + taskNumber + "?sessionId=" + sessionID);
+        JSONObject response =  get.sendGet("dkrest/gettask/" + taskNumber + "?sessionId=" + sessionID);
+        if (response != null)
+        {
+            argument = (JSONArray) response.get("arguments");
+        }
+
+
     }
 
 
     static public void taskOne()
     {
 
-        int sessionId = sessionID;
         String message = "Hello";
-
 
         JSONObject task1 = new JSONObject();
         task1.put("sessionId", sessionID);
@@ -68,26 +65,26 @@ public class LOGIN
 
         System.out.println("Sending task1 to server" + task1.toString());
 
-
         post.sendPost("dkrest/solve", task1);
-
-
-        //JSONObject responsFromServer = new JSONObject(respons);
-       // boolean success = responsFromServer.getBoolean("success");
-        // return success;
-
-
 
     }
 
-//    static public void taskTwo()
-//    {
-//        String respons = post.sendPost("dkrest/auth", jsonLogin);
-//
-//        JSONObject responsFromServer = new JSONObject(respons);
-//        responsFromServer.getString("0");
-//        System.out.println(responsFromServer);
-//    }
+
+
+    static public void taskTwo()
+    {
+
+        JSONObject task2 = new JSONObject();
+
+        String echo = argument.getString(0);
+
+        task2.put("sessionId", sessionID);
+        task2.put("msg", echo);
+
+        post.sendPost("dkrest/solve", task2);
+        System.out.println("Sending: " + task2.toString() + " to server");
+
+   }
 
 
 }

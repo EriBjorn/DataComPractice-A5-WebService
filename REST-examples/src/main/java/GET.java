@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
@@ -8,7 +10,6 @@ import java.net.URL;
  */
 public class GET
 {
-
 
     private String BASE_URL; // Base URL (address) of the server
 
@@ -36,7 +37,8 @@ public class GET
      *
      * @param path     Relative path in the API.
      */
-    public void sendGet(String path) {
+    public JSONObject sendGet(String path) {
+        JSONObject response = null;
 
         try {
             String url = BASE_URL + path;
@@ -55,6 +57,8 @@ public class GET
                 stream.close();
                 System.out.println("Response from the server:");
                 System.out.println(responseBody);
+
+                response = new JSONObject(responseBody);
             } else {
                 String responseDescription = con.getResponseMessage();
                 System.out.println("Request failed, response code: " + responseCode + " (" + responseDescription + ")");
@@ -65,6 +69,7 @@ public class GET
             System.out.println("Something went wrong: " + e.getMessage());
             e.printStackTrace();
         }
+        return response;
     }
 
     /**
