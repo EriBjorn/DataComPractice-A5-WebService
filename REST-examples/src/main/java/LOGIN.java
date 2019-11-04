@@ -12,12 +12,14 @@ public class LOGIN
     public static void main(String[] args)
     {
 
-       loginCredentials("eribjorn@stud.ntnu.no", "94013294");
+        loginCredentials("eribjorn@stud.ntnu.no", "94013294");
 
         getTask(1);
         taskOne();
         getTask(2);
         taskTwo();
+        getTask(3);
+        taskThree();
 
     }
 
@@ -83,6 +85,32 @@ public class LOGIN
 
         post.sendPost("dkrest/solve", task2);
         System.out.println("Sending: " + task2.toString() + " to server");
+
+   }
+
+   static public void taskThree()
+   {
+
+       int multiplier = 1;
+       int answer = 1;
+       int i;
+
+       for ( i = 0; i < argument.length(); i++)
+       {
+
+           multiplier =  Integer.parseInt(argument.getString(i));
+           answer = (answer * multiplier);
+
+       }
+
+       JSONObject task3 = new JSONObject();
+
+       task3.put("sessionId", sessionID);
+       task3.put("result", answer);
+
+       post.sendPost("dkrest/solve", task3);
+       System.out.println("Sending " + task3.toString() + " to server");
+
 
    }
 
