@@ -1,6 +1,8 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+
 public class LOGIN
 {
     static int sessionID;
@@ -20,6 +22,7 @@ public class LOGIN
         taskTwo();
         getTask(3);
         taskThree();
+        getTask(4);
 
     }
 
@@ -69,17 +72,16 @@ public class LOGIN
 
         post.sendPost("dkrest/solve", task1);
 
+
     }
 
 
 
     static public void taskTwo()
     {
-
-        JSONObject task2 = new JSONObject();
-
         String echo = argument.getString(0);
 
+        JSONObject task2 = new JSONObject();
         task2.put("sessionId", sessionID);
         task2.put("msg", echo);
 
@@ -104,12 +106,22 @@ public class LOGIN
        }
 
        JSONObject task3 = new JSONObject();
-
        task3.put("sessionId", sessionID);
        task3.put("result", answer);
 
        post.sendPost("dkrest/solve", task3);
        System.out.println("Sending " + task3.toString() + " to server");
+
+
+   }
+
+   static public void taskFour()
+   {
+
+
+        JSONObject task4 = new JSONObject();
+        task4.put("sessionId", sessionID);
+      //  task4.put("pin", pinCode);
 
 
    }
