@@ -1,7 +1,10 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.apache.commons.codec.digest.DigestUtils;
+import sun.awt.windows.WPrinterJob;
 
 import java.security.MessageDigest;
+import java.util.HashMap;
 
 public class LOGIN
 {
@@ -23,7 +26,9 @@ public class LOGIN
         getTask(3);
         taskThree();
         getTask(4);
-
+        taskFour();
+        getResult();
+        getTask(2016);
     }
 
     static public void loginCredentials(String yourEmail, String yourNumber)
@@ -119,11 +124,37 @@ public class LOGIN
    {
 
 
-        JSONObject task4 = new JSONObject();
-        task4.put("sessionId", sessionID);
       //  task4.put("pin", pinCode);
 
 
+       int i;
+
+
+       for ( i = 0; i <= 9999; i++)
+       {
+           String str = String.format("%04d", i);
+
+           String code = DigestUtils.md5Hex(str);
+
+
+           if(code.equals(argument.getString(0))) {
+               int pinCode = Integer.parseInt(str);
+
+
+               JSONObject task4 = new JSONObject();
+               task4.put("sessionId", sessionID);
+               task4.put("pin", pinCode);
+
+               post.sendPost("dkrest/solve",task4);
+           }
+       }
+
+
+   }
+
+   static public void getResult()
+   {
+       get.sendGet("dkrest/results/" + sessionID);
    }
 
 
